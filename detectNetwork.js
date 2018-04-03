@@ -16,6 +16,23 @@ var detectNetwork = function(cardNumber) {
     return "American Express"
   } else if ((cardString.slice(0, 2) === "38" || cardString.slice(0, 2) === "39") && cardString.length === 14) {
     return "Diner's Club"
+  } else if (cardString.slice(0, 1) === "4" && (cardString.length === 16 || cardString.length === 13 || cardString.length === 19)) {
+    return "Visa"
+  } else if ((cardString.slice(0, 2) === "51" || cardString.slice(0, 2) === "52" || cardString.slice(0, 2) === "53" || cardString.slice(0, 2) === "54" || cardString.slice(0, 2) === "55") && cardString.length === 16) {
+    return "MasterCard"
+  } else if (cardString.slice(0, 4) === "6011" && (cardString.length === 16 || cardString.length === 19)) {
+    return "Discover"
+  }
+
+  for (i = 644; i <= 649; i++) {
+    if (cardString.slice(0, 3) === i.toString() && (cardString.length === 16 || cardString.length === 19)) {
+      return "Discover"
+    }
+  }
+  for (i = 12; i <= 19; i++) {
+    if (cardString.length === i && (cardString.slice(0, 4) === "5018" || cardString.slice(0, 4) === "5020" || cardString.slice(0, 4) === "5038" || cardString.slice(0, 4) === "6304")) {
+      return "Maestro"
+    }
   }
   // Once you've read this, go ahead and try to implement this function, then return to the console.
 };
