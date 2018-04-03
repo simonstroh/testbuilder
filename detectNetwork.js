@@ -22,6 +22,8 @@ var detectNetwork = function(cardNumber) {
     return "MasterCard"
   } else if (cardString.slice(0, 4) === "6011" && (cardString.length === 16 || cardString.length === 19)) {
     return "Discover"
+  } else if (cardString.slice(0, 1) === "65" && (cardString.length === 16 || cardString.length === 19)) {
+    return "Discover"
   }
 
   for (i = 644; i <= 649; i++) {
