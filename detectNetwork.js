@@ -12,10 +12,47 @@ var detectNetwork = function(cardNumber) {
   // The Diner's Club network always starts with a 38 or 39 and is 14 digits long
   // The American Express network always starts with a 34 or 37 and is 15 digits long
   var cardString = cardNumber
+  if ((cardString.slice(0, 4) === "4903" || cardString.slice(0, 4) === "4905" || cardString.slice(0, 4) === "4911" || cardString.slice(0, 4) === "4936" || cardString.slice(0, 6) === "564182" || cardString.slice(0, 6) === "633110" || cardString.slice(0, 4) === "6333" || cardString.slice(0, 4) === "6759") && (cardString.length === 16 || cardString.length === 18 || cardString.length === 19)) {
+    return "Switch"
+  }
   if ((cardString.slice(0, 2) === "34" || cardString.slice(0, 2) === "37") && cardString.length === 15) {
     return "American Express"
-  } else if ((cardString.slice(0, 2) === "38" cardString.slice(0, 2) === "39") && cardString.length === 14) {
+  } else if ((cardString.slice(0, 2) === "38" || cardString.slice(0, 2) === "39") && cardString.length === 14) {
     return "Diner's Club"
+  } else if (cardString.slice(0, 1) === "4" && (cardString.length === 16 || cardString.length === 13 || cardString.length === 19)) {
+    return "Visa"
+  } else if ((cardString.slice(0, 2) === "51" || cardString.slice(0, 2) === "52" || cardString.slice(0, 2) === "53" || cardString.slice(0, 2) === "54" || cardString.slice(0, 2) === "55") && cardString.length === 16) {
+    return "MasterCard"
+  } else if (cardString.slice(0, 4) === "6011" && (cardString.length === 16 || cardString.length === 19)) {
+    return "Discover"
+  } else if (cardString.slice(0, 2) === "65" && (cardString.length === 16 || cardString.length === 19)) {
+    return "Discover"
+  }
+
+  for (i = 644; i <= 649; i++) {
+    if (cardString.slice(0, 3) === i.toString() && (cardString.length === 16 || cardString.length === 19)) {
+      return "Discover"
+    }
+  }
+  for (i = 12; i <= 19; i++) {
+    if (cardString.length === i && (cardString.slice(0, 4) === "5018" || cardString.slice(0, 4) === "5020" || cardString.slice(0, 4) === "5038" || cardString.slice(0, 4) === "6304")) {
+      return "Maestro"
+    }
+  }
+  for (i = 622126; i <= 622925; i++) {
+    if (cardString.slice(0, 6) === i.toString() && (cardString.length === 16 || cardString.length === 17 || cardString.length === 18 || cardString.length === 19)) {
+      return "China UnionPay"
+    }
+  }
+  for (i = 624; i <= 626; i++) {
+    if (cardString.slice(0, 3) === i.toString() && (cardString.length === 16 || cardString.length === 17 || cardString.length === 18 || cardString.length === 19)) {
+      return "China UnionPay"
+    }
+  }
+  for (i = 6282; i <= 6288; i++) {
+    if (cardString.slice(0, 4) === i.toString() && (cardString.length === 16 || cardString.length === 17 || cardString.length === 18 || cardString.length === 19)) {
+      return "China UnionPay"
+    }
   }
   // Once you've read this, go ahead and try to implement this function, then return to the console.
 };
